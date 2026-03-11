@@ -1,6 +1,4 @@
-# laravel-food-delivery-mlm
-Full-stack Laravel 11 app - Blade admin panel + REST API for a food delivery platform with MLM member management, multi-kitchen routing, OTP auth and performance bonus system
-# 🍽️ Food Delivery & MLM Platform — Laravel Backend
+# 🍽️ Food Delivery & MLM Platform - Laravel Backend
 
 ### A full-stack Laravel 11 application combining a food delivery platform with an MLM member management system
 
@@ -10,7 +8,7 @@ Full-stack Laravel 11 app - Blade admin panel + REST API for a food delivery pla
 [![JWT](https://img.shields.io/badge/JWT-Auth-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)](https://jwt.io)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 
-> A production-grade Laravel backend with two layers — a **Blade admin panel** for operations management and a **REST API** for the customer mobile app. Features OTP-based authentication, pincode-aware product delivery, kitchen stock management, and an MLM referral network with performance bonuses.
+> A production-grade Laravel backend with two layers - a **Blade admin panel** for operations management and a **REST API** for the customer mobile app. Features OTP-based authentication, pincode-aware product delivery, kitchen stock management, and an MLM referral network with performance bonuses.
 
 ---
 
@@ -32,39 +30,39 @@ Full-stack Laravel 11 app - Blade admin panel + REST API for a food delivery pla
 
 This is a dual-purpose backend built for a food business operating on an MLM (Multi-Level Marketing) model. It serves two clients simultaneously:
 
-- **Admin Panel** (Blade/Web) — full operations dashboard for managing kitchens, members, products, stock, and MLM plans
-- **Customer REST API** (JSON/JWT) — powers the mobile app with OTP login, pincode-based product discovery, and member dashboards
+- **Admin Panel** (Blade/Web) - full operations dashboard for managing kitchens, members, products, stock, and MLM plans
+- **Customer REST API** (JSON/JWT) - powers the mobile app with OTP login, pincode-based product discovery, and member dashboards
 
 ---
 
 ## ✨ Features
 
 ### 👥 MLM Member Management
-- Member registration with sponsor referral chain — auto-generates sequential membership IDs
-- Full KYC document management — PAN card, Aadhaar, bank documents, profile photo (multi-file upload)
+- Member registration with sponsor referral chain - auto-generates sequential membership IDs
+- Full KYC document management - PAN card, Aadhaar, bank documents, profile photo (multi-file upload)
 - Genealogy tree view to visualise the referral network
-- MLM plan configuration — TDS %, activation reward points, direct referral percentages
+- MLM plan configuration - TDS %, activation reward points, direct referral percentages
 - Performance bonus tiers based on Business Volume (BV) ranges
-- Bulk member actions — activate, deactivate, delete
+- Bulk member actions - activate, deactivate, delete
 
 ### 🍽️ Kitchen & Food Operations
-- Multi-kitchen setup — each kitchen mapped to pincodes for delivery zone management
+- Multi-kitchen setup - each kitchen mapped to pincodes for delivery zone management
 - Kitchen manager assignment per kitchen
 - Kitchen stock tracking per ingredient
 - Ingredient management with product-ingredient linking
-- Two product pricing modes — `qty` (fixed price) and `variant` (size-based variants with separate prices)
+- Two product pricing modes - `qty` (fixed price) and `variant` (size-based variants with separate prices)
 - Home page product curation with `isShowOnHome` flag
 
 ### 📱 Customer Mobile API
-- OTP-based mobile login — no password required, 4-digit OTP with 10-min expiry
+- OTP-based mobile login - no password required, 4-digit OTP with 10-min expiry
 - JWT authentication with token invalidation on logout
-- Pincode-aware dashboard — shows category-wise minimum prices for the user's delivery zone
-- Smart product query — filters products by kitchen serving the user's pincode
+- Pincode-aware dashboard - shows category-wise minimum prices for the user's delivery zone
+- Smart product query - filters products by kitchen serving the user's pincode
 - Subquery-based pricing engine that correctly handles both `qty` and `variant` pricing modes
 
 ### 🔐 Dual Authentication System
-- **Admin** — session-based auth via Laravel Blade middleware (`admin.auth` / `admin.guest`)
-- **Customer** — JWT tokens via `tymon/jwt-auth` with OTP verification flow
+- **Admin** - session-based auth via Laravel Blade middleware (`admin.auth` / `admin.guest`)
+- **Customer** - JWT tokens via `tymon/jwt-auth` with OTP verification flow
 - Separate guards for `admin` and `member` users
 
 ---
@@ -134,9 +132,9 @@ This is a dual-purpose backend built for a food business operating on an MLM (Mu
 ```
 
 **Design patterns used:**
-- **DTO (Data Transfer Objects)** — all input mapped via DTOs before reaching the service layer
-- **Service Layer** — zero business logic in controllers
-- **BaseResponseDTO** — consistent JSON response envelope across all API endpoints
+- **DTO (Data Transfer Objects)** - all input mapped via DTOs before reaching the service layer
+- **Service Layer** - zero business logic in controllers
+- **BaseResponseDTO** - consistent JSON response envelope across all API endpoints
 
 ---
 
@@ -216,7 +214,7 @@ database/
 
 | Table | Purpose |
 |---|---|
-| `sk_registrations` | MLM members — KYC docs, bank details, sponsor chain |
+| `sk_registrations` | MLM members - KYC docs, bank details, sponsor chain |
 | `mlm_plans` | Plan tiers with TDS and referral percentages |
 | `mlm_performance_bonus` | BV range-based incentive tiers |
 | `sk_kitchen_managers` | Kitchen manager profiles |
@@ -242,7 +240,7 @@ Admin panel is protected by session-based middleware. All routes redirect to `/a
 | Page | Route | Description |
 |------|-------|-------------|
 | **Login** | `/admin/` | Session login for admin users |
-| **Dashboard** | `/admin/home` | Stats — total members, kitchens, managers, pincodes |
+| **Dashboard** | `/admin/home` | Stats - total members, kitchens, managers, pincodes |
 | **Members** | `/admin/members/list` | Member listing with bulk actions |
 | **Member Form** | `/admin/members/form` | Create / edit member with KYC docs |
 | **Member Genealogy** | `/admin/member/genealogy` | Referral tree visualisation |
@@ -252,7 +250,7 @@ Admin panel is protected by session-based middleware. All routes redirect to `/a
 | **Kitchen Managers** | `/admin/kitchenManager/list` | Kitchen manager profiles |
 | **Kitchens** | `/admin/kitchen/list` | Kitchen setup with pincode + manager assignment |
 | **Categories** | `/admin/category/list` | Product categories per kitchen |
-| **Products** | `/admin/product/list` | Products with pricing mode — `qty` or `variant` |
+| **Products** | `/admin/product/list` | Products with pricing mode - `qty` or `variant` |
 | **Product Variants** | `/admin/productVariant/list` | Size/weight variants per product |
 | **Kitchen Stock** | `/admin/kitchenStock/list` | Ingredient stock levels per kitchen |
 | **Ingredients** | `/admin/ingredient/list` | Ingredient master list |
@@ -288,7 +286,7 @@ All responses follow a consistent shape:
 
 | Method | Endpoint | Auth | Description |
 |--------|----------|------|-------------|
-| `POST` | `/dashboard` | ❌ | Pincode-aware home — category min prices + featured products |
+| `POST` | `/dashboard` | ❌ | Pincode-aware home - category min prices + featured products |
 | `GET` | `/pincode` | ❌ | List serviceable pincodes |
 | `GET` | `/product` | ❌ | Product listing |
 
